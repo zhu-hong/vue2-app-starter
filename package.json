@@ -11,6 +11,7 @@
     "html-webpack-plugin": "4.5.0",
     "mini-css-extract-plugin": "1.6.2",
     "optimize-css-assets-webpack-plugin": "5.0.8",
+    "postcss": "8.2.14",
     "postcss-loader": "4.2.0",
     "postcss-nested": "5.0.6",
     "rimraf": "3.0.2",
@@ -21,6 +22,7 @@
     "webpack": "4.44.2",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.2",
+    "windicss": "3.5.4",
     "windicss-webpack-plugin": "1.7.3"
   }
 }

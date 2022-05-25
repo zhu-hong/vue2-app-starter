@@ -4,6 +4,7 @@ const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const WindiCssWebpackPlugin = require('windicss-webpack-plugin')
+const { defineConfig } = require('windicss/helpers')
 
 
 const _MODE = process.env.NODE_ENV
@@ -47,7 +48,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new WindiCssWebpackPlugin(),
+    new WindiCssWebpackPlugin(defineConfig({
+      preflight: false,
+      extract: {
+        include: ['index.html', 'src/*.{vue,html}'],
+        exclude: ['node_modules', '.git', 'dist'],
+      },
+      shortcuts: {},
+    })),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, 'index.html'),
