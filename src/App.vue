@@ -1,8 +1,11 @@
 <script>
+import avatar from './assets/avatar.jpeg'
+
 export default {
   data() {
     return {
       msg: 'zhu',
+      avatar,
     }
   },
   mounted() {
@@ -12,7 +15,11 @@ export default {
 </script>
 
 <template>
-  <span class="niu font-bold">{{ msg }}<span class="niu-niu">niu</span></span>
+  <div>
+    <span class="niu font-bold">{{ msg }}<span class="niu-niu">niu</span></span>
+    <img :src="avatar">
+    <img src="./assets/avatar.jpeg">
+  </div>
 </template>
 
 <style lang="postcss">

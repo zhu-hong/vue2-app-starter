@@ -1,13 +1,16 @@
 {
   "name": "vue2-project-starter",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "build:dev": "rimraf -- dist && cross-env NODE_ENV=development webpack",
-    "build": "rimraf -- dist && cross-env NODE_ENV=production webpack"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --open --useLocalIp",
+    "build:dev": "npm run clear && cross-env NODE_ENV=development webpack",
+    "build": "npm run clear && cross-env NODE_ENV=production webpack",
+    "clear": "rimraf -- dist"
   },
   "dependencies": {
+    "copy-webpack-plugin": "5.1.2",
     "cross-env": "7.0.3",
     "css-loader": "4.3.0",
+    "file-loader": "6.2.0",
     "html-webpack-plugin": "4.5.0",
     "mini-css-extract-plugin": "1.6.2",
     "optimize-css-assets-webpack-plugin": "5.0.8",

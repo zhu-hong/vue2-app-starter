@@ -1,10 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const WindiCssWebpackPlugin = require('windicss-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WindiCssPlugin = require('windicss-webpack-plugin')
 const { defineConfig } = require('windicss/helpers')
+const CopyPlugin = require('copy-webpack-plugin')
 
 
 const _MODE = process.env.NODE_ENV
@@ -19,7 +20,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: resolve(__dirname, 'dist'),
-    filename: '[name]-[contentHash:8].js',
+    filename: '[name]-[contenthash:8].js',
   },
   devtool: IS_PROD ? 'none': 'source-map',
   module: {
@@ -45,24 +46,39 @@ module.exports = {
           },
         ]
       },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name() {
+            return IS_PROD ? 'static/[contenthash:8].[ext]' : '[name].[ext]'
+          },
+          esModule: false,
+        },
+      },
     ],
   },
   plugins: [
-    new WindiCssWebpackPlugin(defineConfig({
+    new WindiCssPlugin(defineConfig({
       preflight: false,
       extract: {
-        include: ['index.html', 'src/*.{vue,html}'],
+        include: ['index.html', 'src/**/*.{vue,html}'],
         exclude: ['node_modules', '.git', 'dist'],
       },
-      shortcuts: {},
     })),
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       template: resolve(__dirname, 'index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[contentHash:8].css',
+      filename: 'static/[contentHash:8].css',
     }),
-    new OptimizeCssAssetsWebpackPlugin(),
+    new OptimizeCssAssetsPlugin(),
+    new CopyPlugin([
+      {
+        from: resolve(__dirname, 'public'),
+        to: resolve(__dirname, 'dist'),
+      },
+    ]),
   ],
 }
