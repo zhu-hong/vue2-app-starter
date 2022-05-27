@@ -78,4 +78,9 @@ module.exports = {
       analyzerMode: IS_PROD ? 'server' : 'disabled',
     }),
   ],
+  devServer: {
+    host: '0.0.0.0',
+    open: true,
+    useLocalIp: true,
+  },
 }
