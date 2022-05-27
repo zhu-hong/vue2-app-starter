@@ -9,7 +9,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') //
 const CopyPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-
 const _MODE = process.env.NODE_ENV
 const IS_PROD = _MODE === 'production'
 
@@ -30,6 +29,10 @@ module.exports = {
       {
         test: /\.vue$/i,
         loader: 'vue-loader',
+      },
+      {
+        test: /\.m?js$/i,
+        loader: 'babel-loader',
       },
       {
         test: /\.(css|postcss)$/i,
