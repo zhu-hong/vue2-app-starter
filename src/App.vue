@@ -4,7 +4,7 @@ import avatar from './assets/avatar.jpeg'
 export default {
   data() {
     return {
-      msg: 'zhu',
+      msg: 'hello',
       avatar,
     }
   },
@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div>
-    <span class="niu font-bold">{{ msg }}<span class="niu-niu">niu</span></span>
+    <span class="niu font-bold">{{ msg }}<span class="niu-niu">world</span></span>
     <img class="w-20 object-cover cursor-pointer" :src="avatar">
     <img src="./assets/avatar.jpeg">
   </div>

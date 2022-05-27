@@ -1,10 +1,13 @@
+const { resolve } = require('path')
+
 const HtmlPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
-const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WindicssPlugin = require('windicss-webpack-plugin')
+
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 
 const _MODE = process.env.NODE_ENV
@@ -49,11 +52,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new WindicssPlugin(),
     new VueLoaderPlugin(),
     new HtmlPlugin({
       template: resolve(__dirname, 'index.html'),
     }),
+    new WindicssPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/[contentHash:8].css',
     }),
@@ -64,5 +67,8 @@ module.exports = {
         to: resolve(__dirname, 'dist'),
       },
     ]),
+    new BundleAnalyzerPlugin({
+      analyzerMode: IS_PROD ? 'server' : 'disabled',
+    }),
   ],
 }
