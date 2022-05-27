@@ -24,6 +24,9 @@ module.exports = {
     filename: '[name]-[contenthash:8].js',
   },
   devtool: IS_PROD ? 'none': 'source-map',
+  externals: {
+    'vue': 'Vue',
+  },
   module: {
     rules: [
       {
@@ -58,6 +61,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlPlugin({
       template: resolve(__dirname, 'index.html'),
+      minify: false,
     }),
     new WindicssPlugin(),
     new MiniCssExtractPlugin({
