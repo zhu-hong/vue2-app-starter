@@ -2,10 +2,10 @@ const { resolve } = require('path')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WindicssPlugin = require('windicss-webpack-plugin')
 
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 提取css
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') // 压缩css
 const CopyPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
