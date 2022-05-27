@@ -3,8 +3,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const WindiCssPlugin = require('windicss-webpack-plugin')
-const { defineConfig } = require('windicss/helpers')
+const WindicssPlugin = require('windicss-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 
@@ -34,16 +33,7 @@ module.exports = {
         use: [
           IS_PROD ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  'postcss-nested',
-                ],
-              },
-            },
-          },
+          'postcss-loader',
         ]
       },
       {
@@ -59,13 +49,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new WindiCssPlugin(defineConfig({
-      preflight: false,
-      extract: {
-        include: ['index.html', 'src/**/*.{vue,html}'],
-        exclude: ['node_modules', '.git', 'dist'],
-      },
-    })),
+    new WindicssPlugin(),
     new VueLoaderPlugin(),
     new HtmlPlugin({
       template: resolve(__dirname, 'index.html'),

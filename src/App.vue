@@ -17,7 +17,7 @@ export default {
 <template>
   <div>
     <span class="niu font-bold">{{ msg }}<span class="niu-niu">niu</span></span>
-    <img :src="avatar">
+    <img class="w-20 object-cover cursor-pointer" :src="avatar">
     <img src="./assets/avatar.jpeg">
   </div>
 </template>
