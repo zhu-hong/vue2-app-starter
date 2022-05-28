@@ -7,6 +7,7 @@ const WindicssPlugin = require('windicss-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 提取css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') // 压缩css
 const CopyPlugin = require('copy-webpack-plugin')
+const PreloadPlugin = require('preload-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const _MODE = process.env.NODE_ENV
@@ -59,6 +60,10 @@ module.exports = {
     new HtmlPlugin({
       template: resolve(__dirname, 'index.html'),
       minify: false,
+    }),
+    new PreloadPlugin({
+      rel: 'preload',
+      include: 'asyncChunks',
     }),
     new WindicssPlugin(),
     new MiniCssExtractPlugin({
