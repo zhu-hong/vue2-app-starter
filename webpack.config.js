@@ -11,7 +11,7 @@ const PreloadPlugin = require('preload-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const _MODE = process.env.NODE_ENV
-const IS_PROD = _MODE === 'production'
+const IS_PROD = _MODE !== 'test'
 
 const { Configuration } = require('webpack')
 /**

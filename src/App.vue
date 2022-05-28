@@ -9,7 +9,7 @@ export default {
     }
   },
   mounted() {
-    console.log('巴拉巴拉巴拉巴拉吧')
+    console.log(this, '巴拉巴拉巴拉巴拉吧')
   },
 }
 </script>
