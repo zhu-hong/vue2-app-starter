@@ -24,9 +24,6 @@ module.exports = {
     filename: '[name]-[contenthash:8].js',
   },
   devtool: IS_PROD ? 'none': 'source-map',
-  externals: {
-    'vue': 'Vue',
-  },
   module: {
     rules: [
       {
@@ -78,6 +75,25 @@ module.exports = {
       analyzerMode: IS_PROD ? 'server' : 'disabled',
     }),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
+          priority: -10,
+          name: 'vues',
+        },
+        default: {
+          minChunks: 2,
+          name: "common",
+          minSize: 3000,
+          priority: -20,
+        }
+      },
+    },
+  },
   devServer: {
     host: '0.0.0.0',
     open: true,
