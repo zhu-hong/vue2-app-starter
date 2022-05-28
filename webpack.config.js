@@ -17,7 +17,7 @@ const { Configuration } = require('webpack')
  * @type {Configuration}
  */
 module.exports = {
-  mode: _MODE,
+  mode: IS_PROD ? 'production' : 'development',
   entry: './src/main.js',
   output: {
     path: resolve(__dirname, 'dist'),
