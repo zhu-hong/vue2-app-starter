@@ -64,7 +64,9 @@ module.exports = {
       template: resolve(__dirname, 'index.html'),
       minify: false,
     }),
-    new WindicssPlugin(),
+    new WindicssPlugin({
+      preflight: false,
+    }),
     new MiniCssExtractPlugin({
       filename: 'static/[contentHash:8].css',
     }),
@@ -88,14 +90,9 @@ module.exports = {
       chunks: 'all',
       automaticNameDelimiter: '.',
       cacheGroups: {
-        vue: {
-          test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
-          priority: -10,
-          name: 'vendors.vue',
-        },
         common: {
           minChunks: 2,
-          name: "common",
+          name: 'common',
           minSize: 3000,
           priority: -20,
         }
