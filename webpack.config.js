@@ -64,10 +64,6 @@ module.exports = {
       template: resolve(__dirname, 'index.html'),
       minify: false,
     }),
-    new PreloadPlugin({
-      rel: 'preload',
-      include: 'asyncChunks',
-    }),
     new WindicssPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/[contentHash:8].css',
@@ -79,6 +75,10 @@ module.exports = {
         to: resolve(__dirname, 'dist'),
       },
     ]),
+    new PreloadPlugin({
+      rel: 'prefetch',
+      include: 'asyncChunks',
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: IS_PROD ? 'server' : 'disabled',
     }),
