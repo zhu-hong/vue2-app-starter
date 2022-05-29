@@ -1,5 +1,5 @@
 {
-  "name": "vue2-project-starter",
+  "name": "vue2-app-starter",
   "scripts": {
     "dev": "cross-env NODE_ENV=test webpack-dev-server",
     "build:dev": "npm run clear && cross-env NODE_ENV=test webpack",
