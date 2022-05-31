@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
@@ -101,7 +101,8 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
-    open: true,
     useLocalIp: true,
+    open: true,
+    contentBase: join(__dirname, 'public'),
   },
 }
