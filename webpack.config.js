@@ -11,7 +11,7 @@ const PreloadPlugin = require('preload-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const _MODE = process.env.NODE_ENV
-const IS_PROD = _MODE !== 'test'
+const IS_PROD = _MODE !== 'development'
 
 const { Configuration } = require('webpack')
 /**
@@ -82,7 +82,7 @@ module.exports = {
       include: 'asyncChunks',
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: IS_PROD ? 'server' : 'disabled',
+      analyzerMode: _MODE === 'analyze' ? 'server' : 'disabled',
     }),
   ],
   optimization: {

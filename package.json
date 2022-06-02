@@ -1,8 +1,8 @@
 {
   "name": "vue2-app-starter",
   "scripts": {
-    "dev": "cross-env NODE_ENV=test webpack-dev-server",
-    "build:dev": "npm run clear && cross-env NODE_ENV=test webpack",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "build:analyze": "npm run clear && cross-env NODE_ENV=analyze webpack",
     "build": "npm run clear && cross-env NODE_ENV=production webpack",
     "clear": "rimraf -- dist",
     "preview": "http-server dist -o"
