@@ -55,9 +55,6 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    vue: 'Vue',
-  },
   plugins: [
     new VueLoaderPlugin(),
     new HtmlPlugin({
@@ -90,12 +87,11 @@ module.exports = {
       chunks: 'all',
       automaticNameDelimiter: '.',
       cacheGroups: {
-        common: {
-          minChunks: 2,
-          name: 'common',
-          minSize: 3000,
-          priority: -20,
-        }
+        'vendors.vue': {
+          test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
+          name: 'vendors.vue',
+          priority: 10,
+        },
       },
     },
   },
